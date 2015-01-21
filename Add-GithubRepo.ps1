@@ -12,7 +12,10 @@ $token = [Text.Encoding]::Default.GetString($tokenData)
 
 $project = Get-Location | Split-Path -Leaf
 $postRepo = @{
-    "name" = $project
+    "name"          = $project
+    "has_issues"    = "false"
+    "has_wiki"      = "false"
+    "has_downloads" = "false"
 }
 
 $response = Invoke-WebRequest -Method Post -Uri ("https://api.github.com/user/repos?access_token=" + $token) -Body (ConvertTo-Json $postRepo)
